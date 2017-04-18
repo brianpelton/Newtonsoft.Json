@@ -64,7 +64,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
                 // use Autofac to create types that have been registered with it
                 if (_container.IsRegistered(objectType))
                 {
-                    JsonObjectContract contract = ResolveContact(objectType);
+                    JsonObjectContract contract = ResolveContract(objectType);
                     contract.DefaultCreator = () => _container.Resolve(objectType);
 
                     return contract;
@@ -73,9 +73,9 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
                 return base.CreateObjectContract(objectType);
             }
 
-            private JsonObjectContract ResolveContact(Type objectType)
+            private JsonObjectContract ResolveContract(Type objectType)
             {
-                // attempt to create the contact from the resolved type
+                // attempt to create the contract from the resolved type
                 IComponentRegistration registration;
                 if (_container.ComponentRegistry.TryGetRegistration(new TypedService(objectType), out registration))
                 {
